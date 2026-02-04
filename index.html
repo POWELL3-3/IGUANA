@@ -503,7 +503,6 @@
   
   <a-assets>
     <img id="hdr" src="fondoblur.jpg">
-    <audio id="sound-periquito" src="sounds/periquito.mp3" preload="auto"></audio>
   </a-assets>
   
   <a-sky src="#hdr"></a-sky>
@@ -523,7 +522,7 @@
   <!-- Modelo del perico -->
   <a-entity
     id="modelo"
-    gltf-model="models/periquito.glb"
+    gltf-model="models/iguana.glb"
     position="0.4 0 0"
     scale="5 5 5"
     rotation="0 0 0">
@@ -584,7 +583,7 @@
   </div>
 
   <!-- Título -->
-  <div id="animalTitle">Perico Barbinaranja</div>
+  <div id="animalTitle">Iguana Verde</div>
 
   <!-- Contenedor de dos columnas de botones -->
   <div class="buttons-container">
@@ -1168,124 +1167,6 @@
     document.getElementById('surfaceIndicator').style.display = 'none';
     
     console.log('Modelo colocado exitosamente');
-  }
-
-  // ========================================
-  // AUDIO DEL PERICO
-  // ========================================
-  let audioActual = null;
-  let isPlaying = false;
-
-  function toggleSonido() {
-    const audioPanel = document.getElementById('audioPanel');
-    const sound = document.querySelector('#sound-periquito');
-    const btnSonido = document.querySelector('button[data-info="sonido"]');
-    const imgSonido = document.getElementById('btnSonidoImg');
-    
-    // Si el panel está visible, cerrarlo y detener el audio
-    if (audioPanel.style.display === 'block') {
-      ocultarPanelAudio();
-      // Cambiar a imagen normal
-      if (imgSonido) imgSonido.src = 'images/sonido.png';
-      if (btnSonido) btnSonido.classList.remove('active');
-      return;
-    }
-    
-    // Si el panel no está visible, mostrarlo y reproducir
-    if (sound) {
-      audioActual = sound;
-      audioActual.play().catch(err => {
-        // Error al reproducir sonido
-      });
-      
-      isPlaying = true;
-      mostrarPanelAudio();
-      actualizarBotonPlay();
-      // Cambiar a imagen activa
-      if (imgSonido) imgSonido.src = 'images/sonidoB.png';
-      if (btnSonido) btnSonido.classList.add('active');
-    }
-  }
-
-  function mostrarPanelAudio() {
-    const panel = document.getElementById('audioPanel');
-    document.getElementById('audioTitle').textContent = `🔊 ${animal.nombre}`;
-    panel.style.display = 'block';
-  }
-
-  function ocultarPanelAudio() {
-    document.getElementById('audioPanel').style.display = 'none';
-    const btnSonido = document.querySelector('button[data-info="sonido"]');
-    const imgSonido = document.getElementById('btnSonidoImg');
-    
-    if (audioActual) {
-      audioActual.pause();
-      audioActual.currentTime = 0;
-      isPlaying = false;
-      actualizarBotonPlay();
-    }
-    
-    // Restaurar imagen normal
-    if (imgSonido) imgSonido.src = 'images/sonido.png';
-    if (btnSonido) btnSonido.classList.remove('active');
-  }
-
-  function togglePlayPause() {
-    if (!audioActual) return;
-    
-    if (isPlaying) {
-      audioActual.pause();
-      isPlaying = false;
-    } else {
-      audioActual.play();
-      isPlaying = true;
-    }
-    actualizarBotonPlay();
-  }
-
-  function rebobinarAudio() {
-    if (!audioActual) return;
-    audioActual.currentTime = Math.max(0, audioActual.currentTime - 5);
-  }
-
-  function actualizarBotonPlay() {
-    const btn = document.getElementById('playPauseBtn');
-    if (btn) {
-      btn.textContent = isPlaying ? '⏸️ Pausar' : '▶️ Reproducir';
-    }
-  }
-
-  function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  }
-
-  // Actualizar barra de progreso
-  setInterval(() => {
-    if (audioActual && isPlaying) {
-      const progress = (audioActual.currentTime / audioActual.duration) * 100;
-      document.getElementById('progressBar').style.width = progress + '%';
-      
-      const currentTime = formatTime(audioActual.currentTime);
-      const duration = formatTime(audioActual.duration || 0);
-      document.getElementById('timeDisplay').textContent = `${currentTime} / ${duration}`;
-      
-      if (audioActual.currentTime >= audioActual.duration) {
-        isPlaying = false;
-        actualizarBotonPlay();
-      }
-    }
-  }, 100);
-
-  function clickProgress(e) {
-    if (!audioActual) return;
-    
-    const container = document.getElementById('progressContainer');
-    const rect = container.getBoundingClientRect();
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-    const percent = (clientX - rect.left) / rect.width;
-    audioActual.currentTime = percent * audioActual.duration;
   }
 
   // ========================================
