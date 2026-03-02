@@ -97,6 +97,13 @@
   pointer-events: auto;
 }
 
+#animalTitle .scientific-name {
+  font-size: 18px;      
+  font-weight: 400;     
+  margin-top: 4px;
+  font-style: italic;
+}
+
   /* Contenedor de dos columnas de botones */
   .buttons-container {
     display: flex;
@@ -498,6 +505,12 @@
       padding: 12px 15px;
       max-width: calc(100% - 140px);
     }
+    #animalTitle .scientific-name {
+      font-size: 17px;       
+      font-weight: 400;      
+      margin-top: 4px;
+      font-style: italic;
+    }
 
     .buttons-container {
       gap: 10px;
@@ -530,7 +543,7 @@
     }
 
     #infoContent {
-      font-size: 13px;
+      font-size: 15px;
       max-height: 200px;
     }
 
@@ -652,7 +665,11 @@
   </div>
 
   <!-- Título -->
-  <div id="animalTitle">Iguana Verde</div>
+  <div id="animalTitle">
+  Iguana Verde
+  <div class="scientific-name">Iguana iguana</div>
+</div>
+ 
 
   <!-- Contenedor de dos columnas de botones -->
   <div class="buttons-container">
@@ -852,11 +869,11 @@
   // INFORMACIÓN DEL ANIMAL
   // ========================================
   const animal = {
-    nombre: "Iguana Verde",
-    descripcion: "La iguana verde es un reptil herbívoro de gran tamaño que habita en las selvas tropicales de América Central y del Sur. Es conocida por su coloración verde brillante, su cresta dorsal prominente y su capacidad de nadar. Son excelentes trepadoras y pasan la mayor parte de su tiempo en los árboles cerca del agua.",
-    habitat: "Habita en las selvas tropicales de América Central y del Sur. Prefieren áreas cercanas al agua, donde pueden encontrar abundante vegetación. Son excelentes nadadoras y trepadoras, pasando gran parte de su tiempo en los árboles. En Panamá, se encuentran comúnmente en bosques húmedos y en las orillas de ríos.",
-    alimentacion: "Son principalmente herbívoras, alimentándose de hojas, flores y frutos. Las iguanas jóvenes pueden consumir insectos ocasionalmente, pero a medida que crecen se vuelven completamente vegetarianas. Sus mandíbulas están diseñadas para cortar vegetación, y tienen un sistema digestivo especializado para procesar materia vegetal.",
-    conservacion: "Actualmente clasificada como de 'Preocupación Menor' por la UICN. Sin embargo, enfrentan amenazas como la pérdida de hábitat debido a la deforestación, la caza ilegal para el comercio de mascotas, y en algunas regiones son consumidas como alimento. La protección de su hábitat natural es crucial para su supervivencia a largo plazo."
+    
+    descripcion: "La iguana verde es un reptil herbívoro de gran tamaño. Es conocida por su coloración verde brillante, su cresta dorsal prominente y su capacidad de nadar.",
+    habitat: "Habita en las selvas tropicales de América Central y del Sur. Prefieren áreas cercanas al agua, donde pueden encontrar abundante vegetación. En Panamá, se encuentran comúnmente en bosques húmedos y en las orillas de ríos.",
+    alimentacion: "Son principalmente herbívoras, alimentándose de hojas, flores y frutos. Las iguanas jóvenes pueden consumir insectos ocasionalmente, pero a medida que crecen se vuelven completamente vegetarianas.",
+    conservacion: "Actualmente clasificada como de 'Preocupación Menor'. Sin embargo, enfrentan amenazas como la pérdida de hábitat debido a la deforestación, la caza ilegal para el comercio de mascotas, y en algunas regiones son consumidas como alimento. "
   };
 
   let infoActiva = null;
